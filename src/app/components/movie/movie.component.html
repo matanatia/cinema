@@ -2,8 +2,10 @@
     <img [src]="movie.Poster" [alt]="movie.Title">
     <div class="movie_info">
         <h2 (click)="test()">{{ movie.Title }}</h2>
-        <i class="far fa-edit"></i>
-        <i class="fas fa-info-circle"></i>
+        <div>
+            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
     </div>
 </div>
 
