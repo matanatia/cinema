@@ -9,16 +9,16 @@ import { Movie } from "../../interfaces/movie";
 })
 export class MovieComponent implements OnInit {
 
-  @Input() movie: Movie; 
+  @Input() movie: Movie;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  test() {
-    console.log("test");
+  iClick(action: string) {
+    console.log(action);
   }
-  
+
 
 }

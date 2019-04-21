@@ -47,10 +47,32 @@ img,
 }
 
 .movie_info>h2 {
-    padding: 5px;
+  padding: 5px;
 }
 
-.fa-info-circle, .fa-pencil-alt {
-    font-size: 2.5rem;
+.icons_container {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  justify-content: space-around;
 }
 
+.fa-info-circle {
+  font-size: 2.5rem;
+}
+
+.fa-pencil-alt,
+.fa-trash {
+  font-size: 2.2rem;
+}
+
+
+.fa-info-circle:hover,
+.fa-pencil-alt:hover,
+.fa-trash:hover {
+  cursor: pointer;
+  position: relative;
+  top: -3px;
+}
