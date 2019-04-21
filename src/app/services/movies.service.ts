@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Movie } from "../interfaces/movie";
-import { runInThisContext } from 'vm';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +15,52 @@ export class MoviesService {
   movies: Movie[];
   apiKey: string;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.apiKey = '74fed2a7';
     this.movies = [];
   }
 
   get_movies(): Movie[] {
-    //check if the movies allready in this.movies 
+    //check if the movies already in this.movies 
     if (this.movies.length > 0) {
-      console.log("This is the Saved movies");
       return this.movies;
     }
 
-    //if not - fetch the movies from the server 
-    const urls: string[] = [
-      `http://www.omdbapi.com/?apikey=${this.apiKey}&s=superman&type=movie`,
-      `http://www.omdbapi.com/?apikey=${this.apiKey}&s=spiderman&type=movie`,
-      `http://www.omdbapi.com/?apikey=${this.apiKey}&s=avengers&type=movie`
+    const movieIds: string[] = ["tt2975590", "tt0348150", "tt0081573", "tt0086393",
+      "tt0094074", "tt1673430", "tt1398941", "tt0934706", "tt0839995", "tt2084949", "tt0848228",
+      "tt2395427", "tt4154756", "tt0491703", "tt1259998", "tt3482378", "tt4296026", "tt1291150",
+      "tt3949660", "tt0458241","tt0076759","tt0080684","tt0086190","tt2488496","tt0120915",
+      "tt0121766","tt2527336"
     ];
 
-    let test:Movie[];
-
-    fetch(urls[0])
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        //save the data from the server in this.movies
-        // this.movies = json.Search
-
-        console.log(json.Search)
-        test = json.Search;
-        return json.Search;
-      })
-      .catch(function (error) {
-        console.log(error);
+    for (const id of movieIds) {
+      this.get_movie(`http://www.omdbapi.com/?apikey=${this.apiKey}&i=${id}`).subscribe(movie => {
+        if (!movie.Error) {
+          this.movies.push(movie)
+        }
+        else {
+          console.error(`get_movie for movie Id '${id}' failed: ${movie.Error}`);
+        }
       });
-    // console.log("Fetched that shiiitttt");
-    // return [];
+    }
+
+    return this.movies;
+  }
+
+  get_movie(url): Observable<Movie> {
+    return this.http.get<Movie>(url)
+      .pipe(
+        catchError(this.handleError<Movie>('get_movie', null))
+      );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      //error for user consumption
+      console.error(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

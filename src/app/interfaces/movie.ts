@@ -1,8 +1,10 @@
 export interface Movie {
-    id: string,
-    title: string,
-    year: number,
-    runtime: number,
-    genre: string,
-    director: string
+    imdbID: string,
+    Title: string,
+    Year: number,
+    Runtime: string,
+    Genre: string,
+    Director: string,
+    Poster: string,
+    Error: string
 }
