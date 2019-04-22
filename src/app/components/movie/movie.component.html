@@ -3,10 +3,15 @@
     <div class="movie_info">
         <h2>{{ movie.Title }}</h2>
         <div class="icons_container">
-            <i class="fas fa-info-circle" (click)="iClick('i')"></i>
-            <i class="fas fa-trash" (click)="iClick('d')"></i>
-            <i class="fas fa-pencil-alt" (click)="iClick('e')"></i>
+            <i class="fas fa-info-circle" (click)="showPopUp('i')"></i>
+            <i class="fas fa-trash" (click)="showPopUp('d')"></i>
+            <i class="fas fa-pencil-alt" (click)="showPopUp('e')"></i>
         </div>
     </div>
 </div>
+
+<info-popup [movie]="movie" *ngIf="popupType==='i'" (closeEvent)="closePopUp()"></info-popup>
+<delete-popup [movie]="movie" *ngIf="popupType==='d'" (closeEvent)="closePopUp()"></delete-popup>
+<edit-popup [movie]="movie" *ngIf="popupType==='e'" (closeEvent)="closePopUp()"></edit-popup>
+
 

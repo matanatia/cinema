@@ -7,13 +7,19 @@ import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
+import { InfoPopupComponent } from './components/info-popup/info-popup.component';
+import { EditPopupComponent } from './components/edit-popup/edit-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListComponent,
     HeaderComponent,
-    MovieComponent
+    MovieComponent,
+    DeletePopupComponent,
+    InfoPopupComponent,
+    EditPopupComponent
   ],
   imports: [
     BrowserModule,
