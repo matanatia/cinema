@@ -11,10 +11,14 @@
   font-size: 2.5rem;
   width: 2.5rem;
   height: 2.5rem;
+
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  margin: 0 12px;
 }
 
 .far.fa-plus-square:hover {
   cursor: pointer;
-  position: relative;
-  top: -3px;
+  top: 5.8rem;
 }
