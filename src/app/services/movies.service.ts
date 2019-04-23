@@ -70,7 +70,7 @@ export class MoviesService {
     ];
 
     for (const id of movieIds) {
-      this.get_movie(`http://www.omdbapi.com/?apikey=${this.apiKey}&i=${id}`).subscribe(movie => {
+      this.get_movie(`https://www.omdbapi.com/?apikey=${this.apiKey}&i=${id}`).subscribe(movie => {
         if (!movie.Error) {
           let m:Movie = { imdbID: "", Title: "", Year: null, Runtime: "", Genre: "", Director: "", Poster: "", Error: null};
           for (const key of Object.keys(m)) {
