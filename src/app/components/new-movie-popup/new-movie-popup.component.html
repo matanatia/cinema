@@ -1,18 +1,24 @@
 <div class="popup">
   <div class="popup-body">
     <i class="far fa-window-close" (click)="closePopUp()"></i>
-    <form [formGroup]="movieForm" (ngSubmit)="edit_movie($event)" class="popup-contant">
+    <form [formGroup]="movieForm" (ngSubmit)="add_movie($event)" class="popup-contant">
 
-      <h1>Edit Movie:</h1>
+      <h1>Add Movie:</h1>
 
       <div class="form-item">
         <label for="Title">
           <h2>Movie Title:</h2>
         </label>
-        <input type="text" name="Title" formControlName="Title" class="form-input">
+        <input type="text" name="Title" formControlName="Title" class="form-input" (change)="check_title()">
       </div>
-      <div *ngIf="movieForm.controls.Title.touched && movieForm.controls.Title.invalid" class="error">
-        Movie Title is required
+
+      <div *ngIf="(movieForm.controls.Title.touched && movieForm.controls.Title.invalid) || movie_exist" class="error">
+        <div *ngIf="movieForm.controls.Title.errors?.required">
+          Movie Title is required
+        </div>
+        <div *ngIf="movie_exist">
+            Movie already exist
+        </div>
       </div>
 
       <div class="form-item">
@@ -22,15 +28,15 @@
         <input type="number" name="Year" formControlName="Year" class="form-input">
       </div>
       <div *ngIf="movieForm.controls.Year.touched && movieForm.controls.Year.invalid" class="error">
-          <div *ngIf="movieForm.controls.Year.errors?.required">
-              Relaese Year is required
-          </div>
-          <div *ngIf="movieForm.controls.Year.errors?.min">
-              Year to small - need to be at least {{ movieForm.controls.Year.errors?.min.min }}
-          </div>
-          <div *ngIf="movieForm.controls.Year.errors?.max">
-              Year to big -need to be at most {{ movieForm.controls.Year.errors?.max.max }}
-          </div>
+        <div *ngIf="movieForm.controls.Year.errors?.required">
+          Relaese Year is required
+        </div>
+        <div *ngIf="movieForm.controls.Year.errors?.min">
+          Year to small - need to be at least {{ movieForm.controls.Year.errors?.min.min }}
+        </div>
+        <div *ngIf="movieForm.controls.Year.errors?.max">
+          Year to big -need to be at most {{ movieForm.controls.Year.errors?.max.max }}
+        </div>
       </div>
 
       <div class="form-item">
@@ -63,8 +69,25 @@
         Director is required
       </div>
 
+      <div class="form-item">
+        <label for="Poster">
+          <h2>Poster Link:</h2>
+        </label>
+        <input type="text" name="Poster" formControlName="Poster" class="form-input">
+      </div>
+
+      <div *ngIf="movieForm.controls.Poster.touched && movieForm.controls.Poster.invalid" class="error">
+        <div *ngIf="movieForm.controls.Poster.errors?.required">
+          Poster Link is required
+        </div>
+        <div *ngIf="movieForm.controls.Poster.errors?.pattern">
+          Poster Link invalid syntax - http***.png/jpg..
+        </div>
+      </div>
+
       <div class="btns-container">
-        <button type="submit" [className]=" movieForm.valid ? 'btn-edit' : 'btn-disabled'" [disabled]="movieForm.invalid">
+        <button type="submit" [className]=" movieForm.valid && !movie_exist ? 'btn-edit' : 'btn-disabled'"
+          [disabled]="movieForm.invalid || movie_exist">
           <h1>Save</h1>
         </button>
         <button class="btn-cancel" (click)="closePopUp()">

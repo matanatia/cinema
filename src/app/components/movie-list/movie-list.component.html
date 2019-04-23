@@ -1,3 +1,6 @@
 <div id="movies_container">
-    <movie *ngFor="let movie of movies" [movie]="movie"></movie>
+  <i class="far fa-plus-square" (click)="showPopUp()"></i>
+  <movie *ngFor="let movie of movies" [movie]="movie" (refreshPageEvent)="updateMovies()"></movie>
 </div>
+
+<new-movie-popup *ngIf="show" (closeEvent)="closePopUp()" (refreshPageEvent)="updateMovies()"></new-movie-popup>

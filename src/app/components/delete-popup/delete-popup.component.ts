@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MoviesService } from "../../services/movies.service";
 
 import { Movie } from "../../interfaces/movie";
 
@@ -9,15 +10,27 @@ import { Movie } from "../../interfaces/movie";
 })
 export class DeletePopupComponent implements OnInit {
 
-  @Input() movie:Movie;
+  @Input() movie: Movie;
   @Output() closeEvent = new EventEmitter();
-  constructor() { }
+  @Output() refreshEvent = new EventEmitter();
+
+  constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
   }
 
   closePopUp() {
     this.closeEvent.emit();
+  }
+
+  delete_movie() {
+    let successe = this.moviesService.delete_movie(this.movie.imdbID);
+
+    if(successe) {
+      this.refreshEvent.emit();
+    }
+
+    this.closePopUp();
   }
 
 }

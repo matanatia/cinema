@@ -6,3 +6,15 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.far.fa-plus-square {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.far.fa-plus-square:hover {
+  cursor: pointer;
+  position: relative;
+  top: -3px;
+}

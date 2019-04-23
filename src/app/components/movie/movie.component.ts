@@ -10,6 +10,7 @@ import { Movie } from "../../interfaces/movie";
 export class MovieComponent implements OnInit {
 
   @Input() movie: Movie;
+  @Output() refreshPageEvent = new EventEmitter();
   popupType: string = "";
 
   constructor() {
@@ -25,6 +26,10 @@ export class MovieComponent implements OnInit {
 
   closePopUp() {
     this.popupType = "";
+  }
+
+  refreshPage() {
+    this.refreshPageEvent.emit();
   }
 
 

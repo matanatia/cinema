@@ -11,12 +11,25 @@ import { Movie } from "../../interfaces/movie";
 export class MovieListComponent implements OnInit {
 
   movies: Movie[] = [];
+  show = false;
   
   constructor(private moviesService: MoviesService) {
   }
 
   ngOnInit() {
     this.movies = this.moviesService.get_movies();
+  }
+
+  updateMovies() {
+    this.movies = this.moviesService.get_movies();
+  }
+
+  showPopUp() {
+    this.show = true;
+  }
+
+  closePopUp() {
+    this.show = false;
   }
 
 }

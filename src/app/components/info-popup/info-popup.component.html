@@ -1,3 +1,13 @@
-<p (click) = "closePopUp()">
-  info-popup works!
-</p>
+<div class="popup">
+  <div class="popup-body">
+    <i class="far fa-window-close" (click)="closePopUp()"></i>
+    <div class="popup-contant">
+      <ul>
+        <li *ngFor="let detail of movie_detailes">
+          <h2 class="test">{{ detail }}:</h2>
+          <h2>{{ movie[detail] }}</h2>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

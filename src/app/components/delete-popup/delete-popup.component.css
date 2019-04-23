@@ -1,0 +1,85 @@
+.popup {
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  z-index: 1;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  display: flex;
+  justify-content: center;
+
+}
+
+.popup-body {
+  margin-top: 2rem;
+  width: 85%;
+  height: 40%;
+  border-radius: 5px;
+  box-shadow: 0 10px 15px -6px black;
+  background: #EDF7F5;
+
+}
+
+.popup-contant {
+  margin: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.far.fa-window-close {
+  margin: 10px;
+  font-size: 2.5rem;
+}
+
+.far.fa-window-close:hover {
+  cursor: pointer;
+  position: relative;
+  top: -3px;
+}
+
+.btns-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  width: 10rem;
+  background: none;
+  border-radius: 10px;
+  margin: 20px 20px 0 20px;
+}
+
+h1 {
+  color: #ec4d48;
+}
+
+.btn-delete {
+  border: #ec4d48 solid 3px;
+}
+
+
+.btn-cancel {
+  color: #204E5F;
+  border: #204E5F solid 3px;
+}
+
+.btn-cancel>h1 {
+  color: #204E5F;
+}
+
+.btn-cancel:hover,
+.btn-delete:hover {
+  cursor: pointer;
+  box-shadow: 0 10px 15px -10px black;
+  position: relative;
+  top:2px;
+}
