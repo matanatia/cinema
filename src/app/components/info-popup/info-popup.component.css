@@ -17,10 +17,11 @@
 .popup-body {
   margin-top: 2rem;
   width: 70%;
-  height: 50%;
+  height: 75%;
   border-radius: 5px;
   box-shadow: 0 10px 15px -6px black;
   background: #EDF7F5;
+  overflow: hidden;
 
 }
 
@@ -36,8 +37,11 @@
 }
 
 .popup-contant {
+  margin: 10px;
+  height: auto;
   display: flex;
   justify-content: center;
+  text-align: center;
   overflow: auto;
 }
 

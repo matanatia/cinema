@@ -1,7 +1,7 @@
 <div class="movie">
     <img [src]="movie.Poster" [alt]="movie.Title">
     <div class="movie_info">
-        <h2>{{ movie.Title }}</h2>
+        <h2>{{ movie.Title | title }}</h2>
         <div class="icons_container">
             <i class="fas fa-info-circle" (click)="showPopUp('i')"></i>
             <i class="fas fa-trash" (click)="showPopUp('d')"></i>

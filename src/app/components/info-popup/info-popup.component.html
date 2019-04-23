@@ -3,9 +3,15 @@
     <i class="far fa-window-close" (click)="closePopUp()"></i>
     <div class="popup-contant">
       <ul>
-        <li *ngFor="let detail of movie_detailes">
-          <h2 class="test">{{ detail }}:</h2>
-          <h2>{{ movie[detail] }}</h2>
+        <li *ngFor="let detail of movie_detailes"> 
+          <!-- | title -->
+          <h2>{{ detail }}:</h2>
+          <ng-container *ngIf="detail==='Title'; else elseTemplate">
+              <h2>{{ movie[detail] | title }}</h2>
+          </ng-container>
+          <ng-template #elseTemplate>
+              <h2>{{ movie[detail] }}</h2>
+          </ng-template>
         </li>
       </ul>
     </div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
@@ -10,6 +11,8 @@ import { MovieComponent } from './components/movie/movie.component';
 import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 import { InfoPopupComponent } from './components/info-popup/info-popup.component';
 import { EditPopupComponent } from './components/edit-popup/edit-popup.component';
+import { NewMoviePopupComponent } from './components/new-movie-popup/new-movie-popup.component';
+import { TitlePipe } from './pipes/title.pipe';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,16 @@ import { EditPopupComponent } from './components/edit-popup/edit-popup.component
     MovieComponent,
     DeletePopupComponent,
     InfoPopupComponent,
-    EditPopupComponent
+    EditPopupComponent,
+    NewMoviePopupComponent,
+    TitlePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

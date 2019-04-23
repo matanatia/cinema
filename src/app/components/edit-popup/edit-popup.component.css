@@ -15,18 +15,19 @@
   }
   
   .popup-body {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 85%;
-    height: 60%;
+    height: 80%;
     border-radius: 5px;
     box-shadow: 0 10px 15px -6px black;
     background: #EDF7F5;
+    overflow: hidden;
   
   }
   
   .popup-contant {
     margin: 10px;
-    height: 80%;
+    height: 81%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +57,7 @@
     width: 10rem;
     background: none;
     border-radius: 10px;
-    margin: 20px 20px 0 20px;
+    margin: 10px 20px 0 10px;
   }
   
   h1,h2,h3 {
