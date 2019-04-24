@@ -13,12 +13,14 @@
   height: 2.5rem;
 
   position: fixed;
-  top: 6rem;
-  left: 0;
+  top: 1rem;
+  left: 85%;
   margin: 0 12px;
+  z-index: 999;
+  color: #EDF7F5
 }
 
 .far.fa-plus-square:hover {
   cursor: pointer;
-  top: 5.8rem;
+  top: .8rem;
 }
