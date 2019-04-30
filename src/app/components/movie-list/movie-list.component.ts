@@ -10,15 +10,16 @@ import { Movie } from "../../interfaces/movie";
 })
 export class MovieListComponent implements OnInit, DoCheck {
 
-  movies: Movie[];
+  // movies: Movie[];
   show = false;
 
   constructor(private moviesService: MoviesService) {
-    this.movies = [];
+    // this.movies = [];
   }
 
   ngOnInit() {
-    this.movies = this.moviesService.get_movies();
+    // this.movies = this.moviesService.get_movies();
+    this.moviesService.get_movies();
   }
 
   ngDoCheck() {
