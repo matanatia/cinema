@@ -21,7 +21,7 @@ export class EditPopupComponent implements OnInit {
 
   ngOnInit() {
     this.movieForm = this.fb.group({
-      Title: [this.movie.Title, [Validators.required, this.forbiddenNameValidator("test")]],
+      Title: [this.movie.Title, [Validators.required, this.forbiddenNameValidator()]],
       Year: [this.movie.Year, [Validators.required, Validators.min(1850),Validators.max(this.current_date.getFullYear())]],
       Runtime: [this.movie.Runtime, [Validators.required]],
       Genre: [this.movie.Genre, [Validators.required]],
@@ -38,14 +38,9 @@ export class EditPopupComponent implements OnInit {
     this.closePopUp();
   }
 
-  check_title() {
-    this.movie_exist = this.moviesService.check_if_exist(this.movieForm.controls.Title.value);
-    console.log(this.movieForm.controls.Title);
-  }
-
-  forbiddenNameValidator(nameRe: string): ValidatorFn {
+  forbiddenNameValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
-      const forbidden = (nameRe === control.value)? true: false;
+      const forbidden = (this.movie.Title!==control.value)&&this.moviesService.check_if_exist(control.value)? true: false;
       return forbidden ? {'forbiddenName': {value: control.value}} : null;
     };
   }
