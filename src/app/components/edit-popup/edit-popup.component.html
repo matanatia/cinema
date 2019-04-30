@@ -12,9 +12,11 @@
         <input type="text" name="Title" formControlName="Title" class="form-input" (change)="check_title()" (keydown)="check_title()">
       </div>
       <div *ngIf="movieForm.controls.Title.touched && movieForm.controls.Title.invalid" class="error">
-        Movie Title is required
+        <div *ngIf="movieForm.controls.Title.errors?.required">
+          Movie Title is required
+      </div>
         <div *ngIf="movieForm.controls.Title.errors?.forbiddenName">
-          testtt
+          Movie name alredy exist
       </div>
       </div>
 
