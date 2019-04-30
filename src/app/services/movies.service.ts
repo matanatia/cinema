@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Movie } from "../interfaces/movie";
 import { Observable, of } from 'rxjs';
@@ -59,6 +59,7 @@ export class MoviesService {
   get_movies(): Movie[] {
     //check if the movies already in this.movies 
     if (this.movies.length > 0) {
+      // return of(this.movies);
       return this.movies;
     }
 
@@ -83,7 +84,7 @@ export class MoviesService {
         }
       });
     }
-
+    // return of(this.movies);
     return this.movies;
   }
 
@@ -150,7 +151,7 @@ export class MoviesService {
     this.new_movie_id++;
 
     //add the movie local
-    this.movies.push(new_movie);
+    this.movies.unshift(new_movie);
 
     //add the movie at the server - if not succeeded return false 
     //add this functionality in the future

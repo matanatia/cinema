@@ -11,7 +11,7 @@
 </div>
 
 <info-popup [movie]="movie" *ngIf="popupType==='i'" (closeEvent)="closePopUp()"></info-popup>
-<delete-popup [movie]="movie" *ngIf="popupType==='d'" (closeEvent)="closePopUp()" (refreshEvent)="refreshPage()"></delete-popup>
-<edit-popup [movie]="movie" *ngIf="popupType==='e'" (closeEvent)="closePopUp()" (refreshEvent)="refreshPage()"></edit-popup>
+<delete-popup [movie]="movie" *ngIf="popupType==='d'" (closeEvent)="closePopUp()"></delete-popup>
+<edit-popup [movie]="movie" *ngIf="popupType==='e'" (closeEvent)="closePopUp()"></edit-popup>
 
 

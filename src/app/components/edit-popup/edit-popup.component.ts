@@ -13,7 +13,6 @@ export class EditPopupComponent implements OnInit {
 
   @Input() movie: Movie;
   @Output() closeEvent = new EventEmitter();
-  @Output() refreshEvent = new EventEmitter();
   movieForm: FormGroup;
   current_date = new Date();
 
@@ -35,11 +34,7 @@ export class EditPopupComponent implements OnInit {
 
   edit_movie(e: Event) {
     e.preventDefault();
-    let successe = this.moviesService.edit_movie(this.movie.imdbID, this.movieForm);
-    if (successe) {
-      this.refreshEvent.emit();
-    }
-
+    this.moviesService.edit_movie(this.movie.imdbID, this.movieForm);
     this.closePopUp();
   }
 

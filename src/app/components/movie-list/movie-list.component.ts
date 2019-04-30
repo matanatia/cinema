@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 import { MoviesService } from "../../services/movies.service";
 import { Movie } from "../../interfaces/movie";
@@ -8,20 +8,20 @@ import { Movie } from "../../interfaces/movie";
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, DoCheck {
 
-  movies: Movie[] = [];
+  movies: Movie[];
   show = false;
-  
+
   constructor(private moviesService: MoviesService) {
+    this.movies = [];
   }
 
   ngOnInit() {
     this.movies = this.moviesService.get_movies();
   }
 
-  updateMovies() {
-    this.movies = this.moviesService.get_movies();
+  ngDoCheck() {
   }
 
   showPopUp() {

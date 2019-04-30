@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
+import { MoviesService } from "./services/movies.service";
+
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { HeaderComponent } from './components/header/header.component';

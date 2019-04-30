@@ -12,7 +12,6 @@ export class DeletePopupComponent implements OnInit {
 
   @Input() movie: Movie;
   @Output() closeEvent = new EventEmitter();
-  @Output() refreshEvent = new EventEmitter();
 
   constructor(private moviesService: MoviesService) { }
 
@@ -24,12 +23,7 @@ export class DeletePopupComponent implements OnInit {
   }
 
   delete_movie() {
-    let successe = this.moviesService.delete_movie(this.movie.imdbID);
-
-    if(successe) {
-      this.refreshEvent.emit();
-    }
-
+    this.moviesService.delete_movie(this.movie.imdbID);
     this.closePopUp();
   }
 

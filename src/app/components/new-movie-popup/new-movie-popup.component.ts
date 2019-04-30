@@ -10,7 +10,6 @@ import { MoviesService } from "../../services/movies.service";
 export class NewMoviePopupComponent implements OnInit {
 
   @Output() closeEvent = new EventEmitter();
-  @Output() refreshPageEvent = new EventEmitter();
   movieForm: FormGroup;
   current_date = new Date();
   movie_exist = false;
@@ -36,7 +35,7 @@ export class NewMoviePopupComponent implements OnInit {
     e.preventDefault();
     let successe = this.moviesService.add_movie(this.movieForm);
     if (successe) {
-      this.refreshPageEvent.emit();
+      console.log(`movie ${this.movieForm.controls.Title.value} was add successfully`);
     }
 
     this.closePopUp();
