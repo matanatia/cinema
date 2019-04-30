@@ -1,7 +1,7 @@
 <div class="popup">
   <div class="popup-body">
     <i class="far fa-window-close" (click)="closePopUp()"></i>
-    <form [formGroup]="movieForm" (ngSubmit)="edit_movie($event)" class="popup-contant">
+    <form [formGroup]="movieForm" (ngSubmit)="edit_movie()" class="popup-contant">
 
       <h1>Edit Movie:</h1>
 
@@ -9,10 +9,13 @@
         <label for="Title">
           <h2>Movie Title:</h2>
         </label>
-        <input type="text" name="Title" formControlName="Title" class="form-input">
+        <input type="text" name="Title" formControlName="Title" class="form-input" (change)="check_title()" (keydown)="check_title()">
       </div>
       <div *ngIf="movieForm.controls.Title.touched && movieForm.controls.Title.invalid" class="error">
         Movie Title is required
+        <div *ngIf="movieForm.controls.Title.errors?.forbiddenName">
+          testtt
+      </div>
       </div>
 
       <div class="form-item">

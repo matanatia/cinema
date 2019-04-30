@@ -1,7 +1,7 @@
 <div class="popup">
   <div class="popup-body">
     <i class="far fa-window-close" (click)="closePopUp()"></i>
-    <form [formGroup]="movieForm" (ngSubmit)="add_movie($event)" class="popup-contant">
+    <form [formGroup]="movieForm" (ngSubmit)="add_movie()" class="popup-contant">
 
       <h1>Add Movie:</h1>
 
@@ -9,14 +9,14 @@
         <label for="Title">
           <h2>Movie Title:</h2>
         </label>
-        <input type="text" name="Title" formControlName="Title" class="form-input" (change)="check_title()">
+        <input #test type="text" name="Title" formControlName="Title" class="form-input">
       </div>
 
-      <div *ngIf="(movieForm.controls.Title.touched && movieForm.controls.Title.invalid) || movie_exist" class="error">
+      <div *ngIf="movieForm.controls.Title.touched && movieForm.controls.Title.invalid" class="error">
         <div *ngIf="movieForm.controls.Title.errors?.required">
           Movie Title is required
         </div>
-        <div *ngIf="movie_exist">
+        <div *ngIf="movieForm.controls.Title.errors?.forbiddenName">
             Movie already exist
         </div>
       </div>
@@ -86,8 +86,8 @@
       </div>
 
       <div class="btns-container">
-        <button type="submit" [className]=" movieForm.valid && !movie_exist ? 'btn-edit' : 'btn-disabled'"
-          [disabled]="movieForm.invalid || movie_exist">
+        <button type="submit" [className]=" movieForm.valid ? 'btn-edit' : 'btn-disabled'"
+          [disabled]="movieForm.invalid">
           <h1>Save</h1>
         </button>
         <button class="btn-cancel" (click)="closePopUp()">

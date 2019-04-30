@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MoviesService } from "../../services/movies.service";
 
 @Component({
@@ -12,13 +12,12 @@ export class NewMoviePopupComponent implements OnInit {
   @Output() closeEvent = new EventEmitter();
   movieForm: FormGroup;
   current_date = new Date();
-  movie_exist = false;
 
   constructor(private moviesService: MoviesService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.movieForm = this.fb.group({
-      Title: ['', [Validators.required]],
+      Title: ['', [Validators.required, this.forbiddenNameValidator()]],
       Year: ['', [Validators.required, Validators.min(1850),Validators.max(this.current_date.getFullYear())]],
       Runtime: ['', [Validators.required]],
       Genre: ['', [Validators.required]],
@@ -31,8 +30,7 @@ export class NewMoviePopupComponent implements OnInit {
     this.closeEvent.emit();
   }
 
-  add_movie(e: Event) {
-    e.preventDefault();
+  add_movie() {
     let successe = this.moviesService.add_movie(this.movieForm);
     if (successe) {
       console.log(`movie ${this.movieForm.controls.Title.value} was add successfully`);
@@ -41,8 +39,12 @@ export class NewMoviePopupComponent implements OnInit {
     this.closePopUp();
   }
 
-  check_title() {
-    this.movie_exist = this.moviesService.check_if_exist(this.movieForm.controls.Title.value);
+  //costume validetor
+  forbiddenNameValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const forbidden = this.moviesService.check_if_exist(control.value);
+      return forbidden ? {'forbiddenName': {value: control.value}} : null;
+    };
   }
 
 }
