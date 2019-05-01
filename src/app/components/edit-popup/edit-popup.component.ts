@@ -41,10 +41,12 @@ export class EditPopupComponent implements OnInit {
   forbiddenNameValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
 
-      console.log("this.movie.title - ", this.movie.title);
-      console.log("control.value - ", control.value);
+      let forbidden:boolean = false;
 
-      const forbidden = (this.movie.Title!==control.value)&&this.moviesService.check_if_exist(control.value)? true: false;
+      if(this.movie.Title!==control.value) {
+        forbidden = this.moviesService.check_if_exist(control.value);
+      }
+      
       return forbidden ? {'forbiddenName': {value: control.value}} : null;
     };
   }

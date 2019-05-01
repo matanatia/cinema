@@ -54,11 +54,10 @@ export class MoviesService implements OnInit {
   constructor(private http: HttpClient) {
     this.apiKey = '74fed2a7';
     this.movies = [];
-    this.set_data();
+    // this.set_data();
   }
 
   ngOnInit() {
-    // this.set_data();
   }
 
   //fetch data from the api and set it at the movies properties
