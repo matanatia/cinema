@@ -19,7 +19,7 @@ export class MovieListComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     // this.movies = this.moviesService.get_movies();
-    this.moviesService.get_movies();
+    // this.moviesService.get_movies();
   }
 
   ngDoCheck() {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Movie } from "../interfaces/movie";
@@ -11,7 +11,7 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 
-export class MoviesService {
+export class MoviesService implements OnInit {
 
   movies: Movie[];
   apiKey: string;
@@ -54,15 +54,15 @@ export class MoviesService {
   constructor(private http: HttpClient) {
     this.apiKey = '74fed2a7';
     this.movies = [];
+    this.set_data();
   }
 
-  get_movies(): Movie[] {
-    //check if the movies already in this.movies 
-    if (this.movies.length > 0) {
-      // return of(this.movies);
-      return this.movies;
-    }
+  ngOnInit() {
+    // this.set_data();
+  }
 
+  //fetch data from the api and set it at the movies properties
+  set_data() {
     const movieIds: string[] = ["tt2975590", "tt0348150", "tt0081573", "tt0086393",
       "tt0094074", "tt1673430", "tt1398941", "tt0934706", "tt0839995", "tt2084949", "tt0848228",
       "tt2395427", "tt4154756", "tt0491703", "tt1259998", "tt3482378", "tt4296026", "tt1291150",
@@ -73,7 +73,7 @@ export class MoviesService {
     for (const id of movieIds) {
       this.get_movie(`https://www.omdbapi.com/?apikey=${this.apiKey}&i=${id}`).subscribe(movie => {
         if (!movie.Error) {
-          let m:Movie = { imdbID: "", Title: "", Year: null, Runtime: "", Genre: "", Director: "", Poster: "", Error: null};
+          let m: Movie = { imdbID: "", Title: "", Year: null, Runtime: "", Genre: "", Director: "", Poster: "", Error: null };
           for (const key of Object.keys(m)) {
             m[key] = movie[key];
           }
@@ -84,6 +84,18 @@ export class MoviesService {
         }
       });
     }
+  }
+
+  get_movies(): Movie[] {
+    //check if the movies already in this.movies 
+    if (this.movies.length > 0) {
+      // return of(this.movies);
+      return this.movies;
+    }
+    else {
+      this.set_data();
+    }
+
     // return of(this.movies);
     return this.movies;
   }
@@ -138,7 +150,7 @@ export class MoviesService {
   add_movie(addForm: FormGroup): boolean {
 
     let new_movie: Movie = {
-      imdbID: "id"+this.new_movie_id,
+      imdbID: "id" + this.new_movie_id,
       Title: addForm.controls.Title.value,
       Year: Number(addForm.controls.Year.value),
       Runtime: addForm.controls.Runtime.value,
