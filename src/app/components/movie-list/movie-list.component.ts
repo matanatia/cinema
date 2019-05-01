@@ -13,7 +13,7 @@ export class MovieListComponent implements OnInit, DoCheck {
   // movies: Movie[];
   show = false;
 
-  constructor(private moviesService: MoviesService) {
+  constructor(public moviesService: MoviesService) {
     // this.movies = [];
   }
 
