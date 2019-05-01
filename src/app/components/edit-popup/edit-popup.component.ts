@@ -42,8 +42,8 @@ export class EditPopupComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: any} | null => {
 
       let forbidden:boolean = false;
-
-      if(this.movie.Title!==control.value) {
+      
+      if(this.movie.Title.replace(/ /g,'').toLowerCase()!==control.value.replace(/ /g,'').toLowerCase()) {
         forbidden = this.moviesService.check_if_exist(control.value);
       }
       
